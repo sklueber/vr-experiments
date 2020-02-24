@@ -15,4 +15,9 @@ public class BatScriptCrazy : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        GetComponent<Renderer>().material.color = Color.red;
+    }
 }
