@@ -13,24 +13,27 @@ public class TowerGeneration : MonoBehaviour
     float blockLength;
     float blockHight;
     float blockWidth;
+    Coroutine currentCoroutine;
+    bool generationRunning;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(BuildTower());
         Vector3 blockScale = blockPrefab.transform.localScale;
         blockLength = blockScale.z;
         blockHight = blockScale.y;
         blockWidth = blockScale.x;
+        BuildTower();
     }
 
-    IEnumerator BuildTower()
+    IEnumerator BuildTowerCoroutine()
     {
+        generationRunning = true;
         for (int i = 0; i < towerHight; i += 2) //rows
         {
             for (int j = 0; j < 3; j++) //row of blocks facing in z-axis
             {
-                Instantiate(blockPrefab, new Vector3(tableX + j * blockWidth, tableHight + dropHeight + i * blockHight, tableZ), Quaternion.identity); //TODO parameterize starting position of tower
+                Instantiate(blockPrefab, new Vector3(tableX + j * blockWidth, tableHight + dropHeight + i * blockHight, tableZ), Quaternion.identity);
                 yield return new WaitForSeconds(dropDelay);
             }
             for (int k = 0; k < 3; k++) //row of blocks facing in x-axis
@@ -39,11 +42,35 @@ public class TowerGeneration : MonoBehaviour
                 yield return new WaitForSeconds(dropDelay);
             }
         }
+        generationRunning = false;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void BuildTower()
     {
-
+        if (!generationRunning)
+        {
+            currentCoroutine = StartCoroutine(BuildTowerCoroutine());
+        }
     }
+
+    public void ForceBuildNewTower()
+    {
+        if (generationRunning)
+        {
+            StopCoroutine(currentCoroutine);
+        }
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Block"))
+        {
+            Destroy(obj);
+        }
+        currentCoroutine = StartCoroutine(BuildTowerCoroutine());
+   
+    }
+
+// Update is called once per frame
+void Update()
+{
+
+}
 }

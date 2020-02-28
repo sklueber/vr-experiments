@@ -3,22 +3,18 @@
 
 public class MyButtonScript : MonoBehaviour
 {
-    //public GameObject table;
     TowerGeneration genScript;
     public GameObject blockPrefab;
+
 
     public void Start()
     {
         genScript = GameObject.FindObjectOfType(typeof(TowerGeneration)) as TowerGeneration;
 
     }
-    public void OnButtonDown()
+    public void OnButtonDown() //Resets all Towers, not just those from a given table
     {
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Block"))
-        {
-            Destroy(obj);
-        }
-        genScript.Invoke("Start", 0);
+        genScript.ForceBuildNewTower();
     }
 
     public void OnButtonUp()
