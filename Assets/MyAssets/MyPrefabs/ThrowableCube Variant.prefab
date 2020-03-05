@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01e094d04519c349b63814228f179dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionLength: 5
 --- !u!114 &7000387761268524017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +242,7 @@ PrefabInstance:
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncrementScoreOfTablePlease
+      value: OnBlockDetachFromHand
       objectReference: {fileID: 0}
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 3}

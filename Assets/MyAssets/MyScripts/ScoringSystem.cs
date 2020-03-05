@@ -9,11 +9,13 @@ public class ScoringSystem : MonoBehaviour
     int score;
     int highscore;
     bool onNewHighscore;
+    bool lost;
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
         highscore = 0; //could be replaced by savefile but that's a bit too much right now
+        lost = false;
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class ScoringSystem : MonoBehaviour
 
     public void IncrementScore()
     {
+        if (lost) return;
         score++;
         if (score > highscore)
         {
@@ -63,6 +66,15 @@ public class ScoringSystem : MonoBehaviour
     {
         score = 0;
         onNewHighscore = false;
+        lost = false;
         UpdateLabel();
+    }
+
+    public void SetLost()
+    {
+        if (lost) return;
+        Debug.Log("Game Over");
+        lost = true;
+        highscoreText.text = "Game Over!";
     }
 }
