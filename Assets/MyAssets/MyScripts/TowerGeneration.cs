@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TowerGeneration : MonoBehaviour
 {
-    public GameObject blockPrefab;
+    public GameObject[] blockPrefabs;
     public float tableHight;
     public float tableZ;
     public float tableX;
@@ -19,7 +19,7 @@ public class TowerGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 blockScale = blockPrefab.transform.localScale;
+        Vector3 blockScale = blockPrefabs[0].transform.localScale;
         blockLength = blockScale.z;
         blockHight = blockScale.y;
         blockWidth = blockScale.x;
@@ -33,12 +33,12 @@ public class TowerGeneration : MonoBehaviour
         {
             for (int j = 0; j < 3; j++) //row of blocks facing in z-axis
             {
-                Instantiate(blockPrefab, new Vector3(tableX + j * blockWidth, tableHight + dropHeight + i * blockHight, tableZ), Quaternion.identity);
+                Instantiate(blockPrefabs[Random.Range(0, blockPrefabs.Length)], new Vector3(tableX + j * blockWidth, tableHight + dropHeight + i * blockHight, tableZ), Quaternion.identity);
                 yield return new WaitForSeconds(dropDelay);
             }
             for (int k = 0; k < 3; k++) //row of blocks facing in x-axis
             {
-                Instantiate(blockPrefab, new Vector3(tableX + blockWidth, tableHight + dropHeight + i * blockHight + blockHight, tableZ + (k - 1) * blockWidth), Quaternion.AngleAxis(90, Vector3.up)); //for z: middle block has same z as the "z-axis" blocks
+                Instantiate(blockPrefabs[Random.Range(0, blockPrefabs.Length)], new Vector3(tableX + blockWidth, tableHight + dropHeight + i * blockHight + blockHight, tableZ + (k - 1) * blockWidth), Quaternion.AngleAxis(90, Vector3.up)); //for z: middle block has same z as the "z-axis" blocks
                 yield return new WaitForSeconds(dropDelay);
             }
         }
