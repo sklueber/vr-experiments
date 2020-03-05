@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ScoringSystem : MonoBehaviour
 {
@@ -19,30 +16,38 @@ public class ScoringSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void incremenetScore()
+    public void IncremenetScore()
     {
         score++;
         if (score > highscore)
         {
             highscore = score;
-            if(!onNewHighscore)
+            if (!onNewHighscore)
             {
-                achievedNewHighscore();
+                AchievedNewHighscore();
+                onNewHighscore = true;
             }
         }
-        updateLabel();
+        UpdateLabel();
     }
 
-    private void updateLabel()
+    private void UpdateLabel()
     {
         Debug.Log($"Score: {score}, Highscore: {highscore}");
     }
 
-    private void achievedNewHighscore()
+    private void AchievedNewHighscore()
     {
         Debug.Log("Congratulations");
+    }
+
+    public void ResetScore()
+    {
+        score = 0;
+        onNewHighscore = false;
+        UpdateLabel();
     }
 }

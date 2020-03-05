@@ -230,7 +230,7 @@ PrefabInstance:
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: incremenetScore
+      value: IncremenetScore
       objectReference: {fileID: 0}
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 3}
