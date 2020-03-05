@@ -225,7 +225,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4610610965129144337, guid: 40bfd15df27c5fb4d88f37ef9397573b,
+      objectReference: {fileID: 5251079658171204793, guid: 40bfd15df27c5fb4d88f37ef9397573b,
         type: 3}
     - target: {fileID: 114000013394261110, guid: fb710a001890d9a44bb74a8ce4f20cc0,
         type: 3}

@@ -3,6 +3,7 @@
 public class ScoringSystem : MonoBehaviour
 {
     public GameObject scoreLabel; //TODO specify
+    public bool resetOnDestroy;
     int score;
     int highscore;
     bool onNewHighscore;
@@ -17,6 +18,13 @@ public class ScoringSystem : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private void OnDestroy()
+    {
+        score = 0;
+        if (resetOnDestroy) highscore = 0; //TODO does not work
+        onNewHighscore = false;
     }
 
     public void IncremenetScore()
