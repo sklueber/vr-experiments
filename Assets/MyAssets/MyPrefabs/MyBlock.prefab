@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01e094d04519c349b63814228f179dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionLength: 5
+  detectionLength: 0.5
+  blockType: 0
 --- !u!114 &7000387761268524017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,7 +39,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010777624494, guid: fb710a001890d9a44bb74a8ce4f20cc0, type: 3}
       propertyPath: m_Name
-      value: ThrowableCube Variant
+      value: MyBlock
       objectReference: {fileID: 0}
     - target: {fileID: 1000010777624494, guid: fb710a001890d9a44bb74a8ce4f20cc0, type: 3}
       propertyPath: m_TagString

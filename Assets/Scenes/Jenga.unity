@@ -539,6 +539,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Table
       objectReference: {fileID: 0}
+    - target: {fileID: 7604023171610576846, guid: 40bfd15df27c5fb4d88f37ef9397573b,
+        type: 3}
+      propertyPath: blockPrefab
+      value: 
+      objectReference: {fileID: 2215667885096033560, guid: 275b09386c2e9b5429c7e60cde73ec01,
+        type: 3}
     - target: {fileID: 8543070343265960681, guid: 40bfd15df27c5fb4d88f37ef9397573b,
         type: 3}
       propertyPath: m_RootOrder

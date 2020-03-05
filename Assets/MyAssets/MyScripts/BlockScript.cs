@@ -1,17 +1,23 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 //weird hacky way to give the prefab objects access to the correct table object (which is effectively the Game Manager)
-public class IncrementScoreOfTable : MonoBehaviour
+public class BlockScript : MonoBehaviour
 {
+    public float detectionLength;
+    [Tooltip("0: normal, 1: doubling")]
+    public int blockType;
+
     GameObject table;
     ScoringSystem scoreScript;
-    public float detectionLength;
+    bool alreadyDoubled;
 
     // Start is called before the first frame update
     void Start()
     {
         table = GameObject.Find("Table");
         scoreScript = table.GetComponent(typeof(ScoringSystem)) as ScoringSystem;
+        alreadyDoubled = false;
     }
 
     // Update is called once per frame
@@ -34,8 +40,22 @@ public class IncrementScoreOfTable : MonoBehaviour
                 scoreScript.Invoke("SetLost", 0);
             }
         }
+    }
 
+    public void OnPickupDouble()
+    {
+        if (!alreadyDoubled)
+        {
+            alreadyDoubled = true;
+            StartCoroutine(DoublingCoroutine());
+        }
+    }
 
-
+    IEnumerator DoublingCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+        Vector3 newScale = transform.localScale;
+        newScale.Scale(new Vector3(2, 1, 1));
+        transform.localScale = newScale; //TODO add an effect
     }
 }
