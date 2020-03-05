@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoringSystem : MonoBehaviour
 {
-    public GameObject scoreLabel; //TODO specify
+    public Text scoreText;
+    public Text highscoreText;
     public bool resetOnDestroy;
     int score;
     int highscore;
@@ -27,7 +29,7 @@ public class ScoringSystem : MonoBehaviour
         onNewHighscore = false;
     }
 
-    public void IncremenetScore()
+    public void IncrementScore()
     {
         score++;
         if (score > highscore)
@@ -37,6 +39,7 @@ public class ScoringSystem : MonoBehaviour
             {
                 AchievedNewHighscore();
                 onNewHighscore = true;
+                return;
             }
         }
         UpdateLabel();
@@ -45,11 +48,15 @@ public class ScoringSystem : MonoBehaviour
     private void UpdateLabel()
     {
         Debug.Log($"Score: {score}, Highscore: {highscore}");
+        scoreText.text = score.ToString();
+        highscoreText.text = highscore.ToString();
     }
 
     private void AchievedNewHighscore()
     {
         Debug.Log("Congratulations");
+        scoreText.text = "Congratulations!";
+        highscoreText.text = "New Highscore!";
     }
 
     public void ResetScore()
