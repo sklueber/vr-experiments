@@ -58,7 +58,7 @@ public class ScoringSystem : MonoBehaviour
     private void AchievedNewHighscore()
     {
         Debug.Log("Congratulations");
-        scoreText.text = "Congratulations!";
+        scoreText.text = score.ToString();
         highscoreText.text = "New Highscore!";
     }
 
@@ -73,8 +73,9 @@ public class ScoringSystem : MonoBehaviour
     public void SetLost()
     {
         if (lost) return;
-        Debug.Log("Game Over");
+        //Debug.Log("Game Over");
         lost = true;
         highscoreText.text = "Game Over!";
+        scoreText.text = score.ToString();
     }
 }
