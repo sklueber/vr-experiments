@@ -10,6 +10,7 @@ public class TowerGeneration : MonoBehaviour
     public int towerHight;
     public float dropHeight;
     public float dropDelay;
+    public bool useSpecialBlocks;
     float blockLength;
     float blockHight;
     float blockWidth;
@@ -33,18 +34,17 @@ public class TowerGeneration : MonoBehaviour
         {
             for (int j = 0; j < 3; j++) //row of blocks facing in z-axis
             {
-                Instantiate(blockPrefabs[Random.Range(0, blockPrefabs.Length)], new Vector3(tableX + j * blockWidth, tableHight + dropHeight + i * blockHight, tableZ), Quaternion.identity);
+                Instantiate(blockPrefabs[useSpecialBlocks ? Random.Range(0, blockPrefabs.Length) : 0], new Vector3(tableX + (j * blockWidth), tableHight + dropHeight + (i * blockHight), tableZ), Quaternion.identity);
                 yield return new WaitForSeconds(dropDelay);
             }
             for (int k = 0; k < 3; k++) //row of blocks facing in x-axis
             {
-                Instantiate(blockPrefabs[Random.Range(0, blockPrefabs.Length)], new Vector3(tableX + blockWidth, tableHight + dropHeight + i * blockHight + blockHight, tableZ + (k - 1) * blockWidth), Quaternion.AngleAxis(90, Vector3.up)); //for z: middle block has same z as the "z-axis" blocks
+                Instantiate(blockPrefabs[useSpecialBlocks ? Random.Range(0, blockPrefabs.Length) : 0], new Vector3(tableX + blockWidth, tableHight + dropHeight + (i * blockHight) + blockHight, tableZ + (k - 1) * blockWidth), Quaternion.AngleAxis(90, Vector3.up)); //for z: middle block has same z as the "z-axis" blocks
                 yield return new WaitForSeconds(dropDelay);
             }
         }
         generationRunning = false;
     }
-
 
     public void BuildTower()
     {
